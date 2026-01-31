@@ -1,40 +1,43 @@
 /* ═══════════════════════════════════════
    松葉畳店 ― JavaScript
-   控えめなフェードイン
+   控えめなフェードイン（Progressive Enhancement）
    ═══════════════════════════════════════ */
 
 ;(function () {
   'use strict'
 
-  // Fade-in on scroll
-  const targets = document.querySelectorAll(
+  // JSが動かなくてもコンテンツは見える設計（CSSではopacity:1がデフォルト）
+  // JSが動く場合のみ、フェードインを適用する
+
+  var targets = document.querySelectorAll(
     '.omoi__line, .omoi__attribution, .shigoto__item, .shigoto__types, .tenpo__info, .tenpo__map'
   )
 
-  targets.forEach(function (el) {
-    el.classList.add('fade-target')
-  })
+  if (!('IntersectionObserver' in window) || targets.length === 0) {
+    return // フォールバック：何もしない（全部見える状態）
+  }
 
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible')
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
-    )
+  // まずopacityを下げる（JSが有効な場合のみ）
+  for (var i = 0; i < targets.length; i++) {
+    targets[i].style.opacity = '0'
+    targets[i].style.transform = 'translateY(16px)'
+    targets[i].style.transition = 'opacity 700ms ease-out, transform 700ms ease-out'
+  }
 
-    targets.forEach(function (el) {
-      observer.observe(el)
-    })
-  } else {
-    // Fallback: show all immediately
-    targets.forEach(function (el) {
-      el.classList.add('is-visible')
-    })
+  var observer = new IntersectionObserver(
+    function (entries) {
+      for (var j = 0; j < entries.length; j++) {
+        if (entries[j].isIntersecting) {
+          entries[j].target.style.opacity = '1'
+          entries[j].target.style.transform = 'translateY(0)'
+          observer.unobserve(entries[j].target)
+        }
+      }
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -20px 0px' }
+  )
+
+  for (var k = 0; k < targets.length; k++) {
+    observer.observe(targets[k])
   }
 })()

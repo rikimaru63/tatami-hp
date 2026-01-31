@@ -422,20 +422,6 @@ a {
 }
 
 /* ═══════════════════════════════════════
-   Fade-in（控えめ）
-   ═══════════════════════════════════════ */
-.fade-target {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 700ms ease-out, transform 700ms ease-out;
-}
-
-.fade-target.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ═══════════════════════════════════════
    Responsive
    ═══════════════════════════════════════ */
 @media (max-width: 768px) {
