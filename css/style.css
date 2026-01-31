@@ -101,27 +101,20 @@ a {
   background-color: #F5F0E1;
 }
 
-/* 畳の織り目を想起させる繊細なパターン */
-.hero__texture {
+/* ヒーロー背景画像 */
+.hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.06;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      #8B7E4F 0px,
-      #8B7E4F 1px,
-      transparent 1px,
-      transparent 8px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      #8B7E4F 0px,
-      #8B7E4F 1px,
-      transparent 1px,
-      transparent 3px
-    );
+  overflow: hidden;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  filter: contrast(0.85) saturate(0.6);
 }
 
 .hero__inner {
@@ -243,7 +236,7 @@ a {
    仕事の紹介
 
    壱・弐・参の漢数字をアクセントに。
-   写真の代わりに枯草色の帯で品格を出す。
+   写真と文章の2カラム構成。
    ═══════════════════════════════════════ */
 .section--shigoto {
   background-color: #F5F0E1;
@@ -252,32 +245,40 @@ a {
 .shigoto__grid {
   display: flex;
   flex-direction: column;
-  gap: clamp(50px, 10vw, 90px);
-  max-width: 800px;
-  margin: 0 auto;
+  gap: clamp(60px, 12vw, 120px);
+  width: 100%;
 }
 
 .shigoto__item {
-  display: flex;
-  gap: clamp(2rem, 4vw, 3.5rem);
-  align-items: flex-start;
-}
-
-.shigoto__accent {
-  flex-shrink: 0;
-  width: 56px;
-  height: 100px;
-  background-color: #A59564;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
   align-items: center;
-  justify-content: center;
 }
 
-.shigoto__accent-text {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #FBFAF5;
-  letter-spacing: 0;
+.shigoto__item--reverse {
+  direction: rtl;
+}
+
+.shigoto__item--reverse > * {
+  direction: ltr;
+}
+
+.shigoto__image-wrap {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+
+.shigoto__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(0.95) saturate(0.8);
+  transition: transform 600ms ease-out;
+}
+
+.shigoto__item:hover .shigoto__image {
+  transform: scale(1.03);
 }
 
 .shigoto__title {
@@ -473,19 +474,10 @@ a {
   }
 
   /* 仕事 */
-  .shigoto__item {
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-
-  .shigoto__accent {
-    width: 44px;
-    height: 44px;
-  }
-
-  .shigoto__accent-text {
-    writing-mode: horizontal-tb;
-    font-size: 1rem;
+  .shigoto__item,
+  .shigoto__item--reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
   }
 
   .shigoto__dl-item {
