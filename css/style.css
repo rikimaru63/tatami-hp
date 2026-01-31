@@ -1,0 +1,506 @@
+/* ═══════════════════════════════════════
+   松葉畳店 ― スタイルシート
+   Design: 静謐と手仕事
+   Font: Noto Serif JP（明朝体統一）
+   ═══════════════════════════════════════ */
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
+  font-weight: 400;
+  line-height: 2.0;
+  color: #1C1C1C;
+  background-color: #F5F0E1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Utility ── */
+.tategaki {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* ═══════════════════════════════════════
+   Navigation
+   ═══════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  padding: 2rem 2.5rem;
+  mix-blend-mode: multiply;
+}
+
+.nav__list {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav__list a {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: #4A4A4A;
+  transition: color 300ms ease-out;
+  position: relative;
+}
+
+.nav__list a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #A59564;
+  transition: width 300ms ease-out;
+}
+
+.nav__list a:hover {
+  color: #1C1C1C;
+}
+
+.nav__list a:hover::after {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════
+   Hero ― ファーストビュー
+
+   屋号を縦書きで大きく。
+   背景は畳の編み目を想起させる
+   CSSパターンで表現。
+   ═══════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #F5F0E1;
+}
+
+/* 畳の織り目を想起させる繊細なパターン */
+.hero__texture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.06;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      #8B7E4F 0px,
+      #8B7E4F 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #8B7E4F 0px,
+      #8B7E4F 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero__yago {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: inline-block;
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  line-height: 1.0;
+  color: #1C1C1C;
+}
+
+.hero__yago-char {
+  display: block;
+}
+
+.hero__copy {
+  margin-top: 3.5rem;
+  font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+  letter-spacing: 0.5em;
+  color: #8C8070;
+  font-weight: 400;
+}
+
+.hero__sub {
+  margin-top: 0.8rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  color: #B0A890;
+}
+
+/* ═══════════════════════════════════════
+   Section ― 共通
+   ═══════════════════════════════════════ */
+.section {
+  padding: clamp(80px, 15vw, 160px) 2rem;
+}
+
+.section__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section__inner--flex {
+  display: flex;
+  gap: clamp(3rem, 6vw, 7rem);
+  align-items: flex-start;
+}
+
+.section__heading {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: #17184B;
+  height: 5.5em;
+  flex-shrink: 0;
+}
+
+.section__heading--right {
+  margin-left: auto;
+  margin-bottom: 4rem;
+}
+
+/* ═══════════════════════════════════════
+   区切り帯
+   ═══════════════════════════════════════ */
+.divider {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #F5F0E1;
+}
+
+.divider__mark {
+  font-size: 0.6rem;
+  color: #D4CFC0;
+  letter-spacing: 2em;
+}
+
+/* ═══════════════════════════════════════
+   想い・哲学
+
+   詩のように一行ずつ配置。
+   縦書き見出しと横書き本文の対比。
+   ═══════════════════════════════════════ */
+.section--omoi {
+  background-color: #FBFAF5;
+}
+
+.omoi__body {
+  max-width: 580px;
+  padding-top: 0.5rem;
+}
+
+.omoi__line {
+  margin-bottom: 2.8rem;
+  font-size: 1rem;
+  color: #1C1C1C;
+}
+
+.omoi__attribution {
+  font-size: 0.85rem;
+  color: #8C8070;
+  letter-spacing: 0.25em;
+  text-align: right;
+  border-top: 1px solid #D4CFC0;
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* ═══════════════════════════════════════
+   仕事の紹介
+
+   壱・弐・参の漢数字をアクセントに。
+   写真の代わりに枯草色の帯で品格を出す。
+   ═══════════════════════════════════════ */
+.section--shigoto {
+  background-color: #F5F0E1;
+}
+
+.shigoto__grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(50px, 10vw, 90px);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.shigoto__item {
+  display: flex;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: flex-start;
+}
+
+.shigoto__accent {
+  flex-shrink: 0;
+  width: 56px;
+  height: 100px;
+  background-color: #A59564;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shigoto__accent-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #FBFAF5;
+  letter-spacing: 0;
+}
+
+.shigoto__title {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.2rem;
+  color: #17184B;
+}
+
+.shigoto__text p {
+  font-size: 0.92rem;
+  color: #4A4A4A;
+  line-height: 2.2;
+}
+
+/* 承る仕事 */
+.shigoto__types {
+  margin-top: clamp(80px, 12vw, 140px);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shigoto__types-heading {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: #17184B;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.shigoto__dl-item {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 2rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid #D4CFC0;
+  align-items: baseline;
+}
+
+.shigoto__dl-item:first-child {
+  border-top: 1px solid #D4CFC0;
+}
+
+.shigoto__dl-item dt {
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
+  color: #1C1C1C;
+}
+
+.shigoto__dl-item dd {
+  font-size: 0.88rem;
+  color: #4A4A4A;
+  line-height: 1.9;
+}
+
+/* ═══════════════════════════════════════
+   店舗情報
+   ═══════════════════════════════════════ */
+.section--tenpo {
+  background-color: #FBFAF5;
+}
+
+.tenpo__body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.tenpo__dl-row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid #D4CFC0;
+  align-items: baseline;
+}
+
+.tenpo__dl-row:first-child {
+  border-top: 1px solid #D4CFC0;
+}
+
+.tenpo__dl-row dt {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #8C8070;
+}
+
+.tenpo__dl-row dd {
+  font-size: 0.92rem;
+  color: #1C1C1C;
+  line-height: 1.8;
+}
+
+.tenpo__dl-row dd a {
+  border-bottom: 1px solid #D4CFC0;
+  transition: border-color 300ms ease-out;
+}
+
+.tenpo__dl-row dd a:hover {
+  border-color: #A59564;
+}
+
+.tenpo__map {
+  overflow: hidden;
+}
+
+.tenpo__map iframe {
+  display: block;
+}
+
+/* ═══════════════════════════════════════
+   Footer
+   ═══════════════════════════════════════ */
+.footer {
+  padding: clamp(60px, 10vw, 100px) 2rem;
+  text-align: center;
+  background-color: #1C1C1C;
+  color: #8C8070;
+}
+
+.footer__yago {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  margin-bottom: 2rem;
+  color: #D4CFC0;
+  height: 5.5em;
+}
+
+.footer__copy small {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+}
+
+/* ═══════════════════════════════════════
+   Fade-in（控えめ）
+   ═══════════════════════════════════════ */
+.fade-target {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+
+.fade-target.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  .nav {
+    padding: 1rem 1.2rem;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(245,240,225,0.97) 60%, transparent);
+  }
+
+  .nav__list {
+    justify-content: flex-end;
+    gap: 1.8rem;
+  }
+
+  /* Hero */
+  .hero__yago {
+    font-size: clamp(2.8rem, 14vw, 4.5rem);
+  }
+
+  /* 共通: 縦書き見出し → 横書きに */
+  .section__inner--flex {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .section__heading {
+    writing-mode: horizontal-tb;
+    height: auto;
+    margin-bottom: 2.5rem;
+  }
+
+  .section__heading--right {
+    margin-left: 0;
+  }
+
+  /* 仕事 */
+  .shigoto__item {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .shigoto__accent {
+    width: 44px;
+    height: 44px;
+  }
+
+  .shigoto__accent-text {
+    writing-mode: horizontal-tb;
+    font-size: 1rem;
+  }
+
+  .shigoto__dl-item {
+    grid-template-columns: 5.5rem 1fr;
+    gap: 1rem;
+  }
+
+  /* 店舗 */
+  .tenpo__body {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer */
+  .footer__yago {
+    writing-mode: horizontal-tb;
+    height: auto;
+  }
+}
